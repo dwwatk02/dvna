@@ -23,7 +23,7 @@ steps:
           "status": 4
         }
       "@
-      $url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/git/repositories/$($env:Build_Repository_Name)/pullRequests/$($env:System_PullRequest_PullRequestId)/threads?api-version=5.1"
+      $url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/git/repositories/$($env:BUILD_REPOSITORY_NAME)/pullRequests/$($env:env:SYSTEM_PULLREQUEST_PULLREQUESTID)/threads?api-version=5.1"
       $result = Invoke-RestMethod -Uri $url -Method POST -Headers @{Authorization = "Bearer $(System.AccessToken)"} -Body $Body -ContentType application/json
   displayName: Post comment on PR
 - task: HCLAppScanOnCloud@2
