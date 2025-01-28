@@ -10,16 +10,6 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: HCLAppScanOnCloud@2
-  inputs:
-    AppSecTestService: 'ASoC'
-    applications: '93704532-4ae4-4148-9af3-44e8111c492a'
-    scantype: 'static'
-    scanMethod: 'IRX'
-    includeSCA: false
-    ScanSpeedOptions: 'simple'
-    FailBuildConfiguration: true
-
 - powershell: |
       $body = @"
       {
@@ -36,3 +26,13 @@ steps:
       $url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/git/repositories/$($env:Build_Repository_Name)/pullRequests/$($env:System_PullRequest_PullRequestId)/threads?api-version=5.1"
       $result = Invoke-RestMethod -Uri $url -Method POST -Headers @{Authorization = "Bearer $(System.AccessToken)"} -Body $Body -ContentType application/json
   displayName: Post comment on PR
+- task: HCLAppScanOnCloud@2
+  inputs:
+    AppSecTestService: 'ASoC'
+    applications: '93704532-4ae4-4148-9af3-44e8111c492a'
+    scantype: 'static'
+    scanMethod: 'IRX'
+    includeSCA: false
+    ScanSpeedOptions: 'simple'
+    FailBuildConfiguration: true
+
