@@ -14,7 +14,7 @@ steps:
       Write-Host $env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI
       Write-Host $env:SYSTEM_TEAMPROJECTID
       Write-Host $env:BUILD_REPOSITORY_NAME
-      Write-Host $env:env:SYSTEM_PULLREQUEST_PULLREQUESTID
+      Write-Host $env:SYSTEM_PULLREQUEST_PULLREQUESTID
       $Body = @"
       {
           "comments": [
