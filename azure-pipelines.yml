@@ -15,7 +15,7 @@ steps:
       Write-Host $env:SYSTEM_TEAMPROJECTID
       Write-Host $env:BUILD_REPOSITORY_NAME
       Write-Host $env:System_PullRequest_PullRequestId
-      $ADO_API=$(echo "$(System.CollectionUri)$(System.TeamProject)/_apis/git/repositories/$(Build.Repository.Name)/pullRequests/$(System.PullRequest.PullRequestId)/threads?api-version=7.1-preview.1")
+      $ADO_API=$(echo "$($env:System.CollectionUri)$($env:System.TeamProject)/_apis/git/repositories/$($env:Build.Repository.Name)/pullRequests/$($env:System.PullRequest.PullRequestId)/threads?api-version=7.1-preview.1")
       Write-Host $ADO_API
       $Body = @"
       {
