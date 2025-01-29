@@ -10,31 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- powershell: |
-      Write-Host $env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI
-      Write-Host $env:SYSTEM_TEAMPROJECTID
-      Write-Host $env:BUILD_REPOSITORY_NAME
-      Write-Host $env:System_PullRequest_PullRequestId
-      $ADO_API=$(echo "$($env:System.CollectionUri)$($env:System.TeamProject)/_apis/git/repositories/$($env:Build.Repository.Name)/pullRequests/$($env:System.PullRequest.PullRequestId)/threads?api-version=7.1-preview.1")
-      Write-Host $ADO_API
-      $Body = @"
-      {
-          "comments": [
-            {
-              "parentCommentId": 0,
-              "content": "Your comment here",
-              "commentType": 1
-            }
-          ],
-          "status": 4
-        }
-      "@
-      #$($env:env:SYSTEM_PULLREQUEST_PULLREQUESTID)
-      $url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/git/repositories/$($env:BUILD_REPOSITORY_NAME)/pullRequests/1/threads?api-version=7.1-preview.1"
-      Write-Host $url
-      $result = Invoke-RestMethod -Uri $url -Method POST -Headers @{Authorization = "Bearer $(System.AccessToken)"} -Body $Body -ContentType application/json
 
-  displayName: Post comment on PR
 - task: HCLAppScanOnCloud@2
   inputs:
     AppSecTestService: 'ASoC'
