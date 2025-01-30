@@ -1,0 +1,25 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- dependabot/npm_and_yarn/bcrypt-5.0.0
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+- task: HCLAppScanOnCloud@2
+  inputs:
+    AppSecTestService: 'ASoC'
+    applications: 'a384f3bf-e585-4e34-960c-21b4b50c79e9'
+    scantype: 'static'
+    scanMethod: 'IRX'
