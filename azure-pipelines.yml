@@ -20,6 +20,6 @@ steps:
 - task: HCLAppScanOnCloud@2
   inputs:
     AppSecTestService: 'ASoC'
-    applications: 'a384f3bf-e585-4e34-960c-21b4b50c79e9'
+    applications: 'dee50709-d473-45ee-b572-d4fbd4980b4e'
     scantype: 'static'
     scanMethod: 'IRX'
